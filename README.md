@@ -6,14 +6,12 @@
 |---------------------|----------|-----------------------------------|-------------------|
 | nickname            | string   | null: false                       | ニックネーム         |
 | email               | string   | null: false, unique: true         | メールアドレス       |
-| encrypted_password  | string   | null: false                       | パスワード（6文字以上の半角英数字）  |
+| encrypted_password  | string   | null: false                       | パスワード（6文字以上の半角英数字）|
 | last_name           | string   | null: false                       | 苗字               |
 | first_name          | string   | null: false                       | 名前               |
 | last_name_kana      | string   | null: false                       | 苗字（カタカナ）     |
 | first_name_kana     | string   | null: false                       | 名前（カタカナ）     |
-| birth_year_id       | integer  | null: false                       | 誕生年             |
-| birth_month_id      | integer  | null: false                       | 誕生月             |
-| birth_day_id        | integer  | null: false                       | 誕生日             |
+| birth_date          | date     | null: false                       | 生年月日           |
 
 ---
 
@@ -21,9 +19,9 @@
 
 | カラム名           | 型        | オプション                     | 説明                    |
 |-------------------|-----------|--------------------------------|------------------------|
-| name              | string    | null: false, limit: 40         | 商品名（40文字まで）     |
-| description       | text      | null: false, limit: 1000       | 商品の説明（1000文字まで）|
-| price             | integer   | null: false                    | 価格（半角数字のみ）      |
+| name              | string    | null: false                    | 商品名                  |
+| description       | text      | null: false                    | 商品の説明              |
+| price             | integer   | null: false                    | 価格（半角数字のみ）|
 | category_id       | integer   | null: false                    | カテゴリ                |
 | state_id          | integer   | null: false                    | 商品の状態              |
 | deliver_cost_id   | integer   | null: false                    | 配送料の負担            |
@@ -61,19 +59,10 @@
 - **User**
   - has_many :items
   - has_many :orders
-  - belongs_to_active_hash :birth_year
-  - belongs_to_active_hash :birth_month
-  - belongs_to_active_hash :birth_day
 
 - **Item**
   - belongs_to :user
   - has_one :order
-  - has_one_attached :image
-  - belongs_to_active_hash :category
-  - belongs_to_active_hash :state
-  - belongs_to_active_hash :deliver_cost
-  - belongs_to_active_hash :deliver_date
-  - belongs_to_active_hash :prefecture
 
 - **Order**
   - belongs_to :user
@@ -82,4 +71,3 @@
 
 - **ShippingAddress**
   - belongs_to :order
-  - belongs_to_active_hash :prefecture
