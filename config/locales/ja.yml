@@ -1,0 +1,97 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        nickname: ニックネーム
+        email: Eメール
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        last_name: 苗字
+        first_name: 名前
+        last_name_kana: 苗字（カタカナ）
+        first_name_kana: 名前（カタカナ）
+        birthday: 生年月日
+  errors:
+    messages:
+      blank: を入力してください
+      too_short: は%{count}文字以上で入力してください
+      too_long: は%{count}文字以内で入力してください
+      invalid: は不正な値です
+      taken: はすでに存在します
+      confirmation: とパスワードの入力が一致しません
+      format: は半角英数字混合で入力してください
+  devise:
+    failure:
+      invalid: メールアドレスまたはパスワードが違います
+      unauthenticated: アカウント登録もしくはログインしてください
+    sessions:
+      signed_in: ログインしました
+      signed_out: ログアウトしました
+    registrations:
+      signed_up: アカウント登録が完了しました
+  date:
+    order:
+      - :year
+      - :month
+      - :day
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y年%m月%d日"
+    month_names:
+      - ~
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    abbr_month_names:
+      - ~
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    day_names:
+      - 日曜日
+      - 月曜日
+      - 火曜日
+      - 水曜日
+      - 木曜日
+      - 金曜日
+      - 土曜日
+    abbr_day_names:
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d %H:%M"
+      long: "%Y年%m月%d日 %H時%M分%S秒"
