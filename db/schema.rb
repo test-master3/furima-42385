@@ -44,18 +44,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_28_080846) do
     t.text "description", null: false
     t.integer "price", null: false
     t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
-    t.bigint "state_id", null: false
-    t.bigint "delivery_cost_id", null: false
-    t.bigint "prefecture_id", null: false
-    t.bigint "delivery_date_id", null: false
+    t.integer "category_id", null: false
+    t.integer "state_id", null: false
+    t.integer "delivery_cost_id", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "delivery_date_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["delivery_cost_id"], name: "index_items_on_delivery_cost_id"
-    t.index ["delivery_date_id"], name: "index_items_on_delivery_date_id"
-    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
-    t.index ["state_id"], name: "index_items_on_state_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 

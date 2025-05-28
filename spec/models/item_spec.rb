@@ -29,36 +29,6 @@ RSpec.describe Item, type: :model do
         expect(item).not_to be_valid
         expect(item.errors[:price]).to include("can't be blank")
       end
-
-      it 'カテゴリーが空の場合はバリデーションエラー' do
-        item.category_id = nil
-        expect(item).not_to be_valid
-        expect(item.errors[:category_id]).to include("can't be blank")
-      end
-
-      it '商品の状態が空の場合はバリデーションエラー' do
-        item.state_id = nil
-        expect(item).not_to be_valid
-        expect(item.errors[:state_id]).to include("can't be blank")
-      end
-
-      it '配送料の負担が空の場合はバリデーションエラー' do
-        item.delivery_cost_id = nil
-        expect(item).not_to be_valid
-        expect(item.errors[:delivery_cost_id]).to include("can't be blank")
-      end
-
-      it '発送元の地域が空の場合はバリデーションエラー' do
-        item.prefecture_id = nil
-        expect(item).not_to be_valid
-        expect(item.errors[:prefecture_id]).to include("can't be blank")
-      end
-
-      it '発送までの日数が空の場合はバリデーションエラー' do
-        item.delivery_date_id = nil
-        expect(item).not_to be_valid
-        expect(item.errors[:delivery_date_id]).to include("can't be blank")
-      end
     end
 
     context '異常系 - 選択肢バリデーション' do

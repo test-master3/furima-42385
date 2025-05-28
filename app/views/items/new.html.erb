@@ -7,16 +7,7 @@
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
-    <% if @item.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= @item.errors.count %>件のエラーがあります</h2>
-        <ul>
-          <% @item.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render 'error_messages', model: @item %>
 
     <%# 商品画像 %>
     <div class="img-upload">

@@ -9,15 +9,10 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true
-  validates :category_id, presence: true
-  validates :state_id, presence: true
-  validates :delivery_cost_id, presence: true
-  validates :prefecture_id, presence: true
-  validates :delivery_date_id, presence: true
   validates :image, presence: true
 
   belongs_to :user
-  has_one :order
+  # has_one :order  # 商品購入機能で実装予定
   has_one_attached :image
 
   validates :category_id, numericality: { other_than: 1, message: 'を選択してください' }
