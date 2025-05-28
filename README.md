@@ -24,8 +24,8 @@
 | price             | integer   | null: false                    | 価格（半角数字のみ）|
 | category_id       | integer   | null: false                    | カテゴリ                |
 | state_id          | integer   | null: false                    | 商品の状態              |
-| deliver_cost_id   | integer   | null: false                    | 配送料の負担            |
-| deliver_date_id   | integer   | null: false                    | 発送までの日数          |
+| delivery_cost_id  | integer   | null: false                    | 配送料の負担            |
+| delivery_date_id  | integer   | null: false                    | 発送までの日数          |
 | prefecture_id     | integer   | null: false                    | 発送元の都道府県         |
 | user              | references| null: false, foreign_key: true | 出品者                  |
 
