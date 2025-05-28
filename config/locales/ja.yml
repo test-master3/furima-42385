@@ -8,6 +8,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
+      item: 商品
     attributes:
       user:
         nickname: ニックネーム
@@ -19,6 +20,17 @@ ja:
         last_name_kana: 苗字（カタカナ）
         first_name_kana: 名前（カタカナ）
         birthday: 生年月日
+      item:
+        name: 商品名
+        description: 商品の説明
+        price: 価格
+        category_id: カテゴリー
+        state_id: 商品の状態
+        delivery_cost_id: 配送料の負担
+        delivery_date_id: 発送までの日数
+        prefecture_id: 発送元の地域
+        image: 商品画像
+        user: 出品者
   errors:
     messages:
       blank: を入力してください
@@ -28,6 +40,11 @@ ja:
       taken: はすでに存在します
       confirmation: とパスワードの入力が一致しません
       format: は半角英数字混合で入力してください
+      inclusion: は一覧にありません
+      not_a_number: は数値で入力してください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      other_than: は%{count}以外の値にしてください
   devise:
     failure:
       invalid: メールアドレスまたはパスワードが違います
