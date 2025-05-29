@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # before_action :set_item, only: [:show]  # 詳細表示機能実装時に使用
 
   def index
-    @items = Item.all
+    @items = Item.order(created_at: :desc)
     #   @items = Item.includes(:user).order(created_at: :desc)
     # end
 
