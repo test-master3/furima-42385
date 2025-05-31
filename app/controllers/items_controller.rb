@@ -53,12 +53,12 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to new_user_session_path
-      return
-    end
+    redirect_to new_user_session_path unless user_signed_in?
 
-    return if current_user.id == @item.user_id
+    @item = Item.find(params[:id])
+
+    # 出品者以外 または 売却済みならトップページへリダイレクト
+    return unless current_user.id != @item.user_id || @item.order.present?
 
     redirect_to root_path
   end
