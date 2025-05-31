@@ -31,8 +31,14 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model: [@item, @order], id: 'charge-form', class: 'transaction-form-wrap', local: true do |f| %>
-    <%# カード情報の入力 %>
+    <%= form_with model: @order_shipping_address, url: item_orders_path(@item.id), id: 'charge-form', class: 'transaction-form-wrap', local: true, data: { turbo: false } do |f| %>
+    
+    <%# エラーメッセージの表示 %>
+    <%= render 'shared/error_messages', model: @order_shipping_address %>
+    <%# /エラーメッセージの表示 %>
+    
+    <%# カード情報の入力（テスト用に一時的に非表示） %>
+    <%# 
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
@@ -67,6 +73,7 @@
         <div id="cvc-form" class="input-default"></div>
       </div>
     </div>
+    %>
     <%# /カード情報の入力 %>
     
     <%# 配送先の入力 %>
@@ -119,7 +126,7 @@
     </div>
     <%# /配送先の入力 %>
     <div class='buy-btn'>
-      <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
+      <%= f.submit "購入", class:"buy-red-btn", id:"button", data: { disable_with: "処理中..." } %>
     </div>
     <% end %>
   </div>

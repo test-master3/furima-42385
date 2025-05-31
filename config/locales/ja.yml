@@ -112,3 +112,13 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%m/%d %H:%M"
       long: "%Y年%m月%d日 %H時%M分%S秒"
+  activemodel:
+    models:
+      order_shipping_address: 注文情報
+    attributes:
+      order_shipping_address:
+        post_number: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        street: 番地
+        phone_number: 電話番号

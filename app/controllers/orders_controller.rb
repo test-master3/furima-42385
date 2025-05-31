@@ -3,12 +3,13 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    @order = Order.new(item_id: params[:item_id])
+    @order_shipping_address = OrderShippingAddress.new
   end
 
   def create
-    @order = Order.new(order_params.merge(item_id: params[:item_id]))
-    if @order.save
+    @order_shipping_address = OrderShippingAddress.new(order_params)
+
+    if @order_shipping_address.save
       redirect_to root_path
     else
       render :index, status: :unprocessable_entity
@@ -22,6 +23,8 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:post_number, :prefecture_id, :city, :street, :building, :phone_number)
+    params.require(:order_shipping_address).permit(:post_number, :prefecture_id, :city, :street, :building, :phone_number).merge(
+      item_id: params[:item_id], user_id: current_user.id
+    )
   end
 end
