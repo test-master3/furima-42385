@@ -89,4 +89,11 @@ gem 'active_hash'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
+group :development, :test do
+  gem 'pry-rails'
+end
+
+gem 'payjp'
+
+gem 'gon'
 
