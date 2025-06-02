@@ -67,7 +67,7 @@ RSpec.describe OrderShippingAddress, type: :model do
     it 'payjp_tokenが空では無効であること' do
       @order_shipping_address.payjp_token = nil
       @order_shipping_address.valid?
-      expect(@order_shipping_address.errors.full_messages).to include("Payjp token can't be blank")
+      expect(@order_shipping_address.errors.full_messages).to include('Payjp token クレジットカード情報を正しく入力してください')
     end
   end
 end

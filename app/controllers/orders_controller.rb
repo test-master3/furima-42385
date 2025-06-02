@@ -9,35 +9,29 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # デバッグ用ログ
-    Rails.logger.info '=== 決済処理開始 ==='
-    Rails.logger.info "PAY.JPトークン: #{params[:payjp_token]}"
-    Rails.logger.info "商品価格: #{@item.price}"
-
     @order_shipping_address = OrderShippingAddress.new(order_params)
 
     if @order_shipping_address.valid?
       begin
         Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-        charge = Payjp::Charge.create(
+        Payjp::Charge.create(
           amount: @item.price,
           card: params[:payjp_token],
           currency: 'jpy'
         )
-        Rails.logger.info "決済成功: #{charge.id}"
         @order_shipping_address.save
         redirect_to root_path
       rescue Payjp::PayjpError => e
-        Rails.logger.error "PAY.JPエラー: #{e.message}"
         @order_shipping_address.errors.add(:base, "決済に失敗しました: #{e.message}")
+        gon.public_key = ENV['PAYJP_PUBLIC_KEY']
         render :index, status: :unprocessable_entity
-      rescue StandardError => e
-        Rails.logger.error "その他のエラー: #{e.message}"
+      rescue StandardError
         @order_shipping_address.errors.add(:base, '予期しないエラーが発生しました')
+        gon.public_key = ENV['PAYJP_PUBLIC_KEY']
         render :index, status: :unprocessable_entity
       end
     else
-      Rails.logger.error "バリデーションエラー: #{@order_shipping_address.errors.full_messages}"
+      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
   end

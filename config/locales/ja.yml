@@ -122,3 +122,4 @@ ja:
         city: 市区町村
         street: 番地
         phone_number: 電話番号
+        payjp_token: ""

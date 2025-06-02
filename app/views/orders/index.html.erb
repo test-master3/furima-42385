@@ -1,5 +1,6 @@
 <%= render "shared/second-header"%>
 
+<div data-turbo="false">
 <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
@@ -31,7 +32,7 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model: @order_shipping_address, url: item_orders_path(@item.id), id: 'charge-form', class: 'transaction-form-wrap', local: true, data: { turbo: false } do |f| %>
+    <%= form_with model: @order_shipping_address, url: item_orders_path(@item.id), id: 'charge-form', class: 'transaction-form-wrap', local: true do |f| %>
     
     <%# エラーメッセージの表示 %>
     <%= render 'shared/error_messages', model: @order_shipping_address %>
@@ -139,5 +140,6 @@
     </div>
     <% end %>
   </div>
+</div>
 </div>
 <%= render "shared/second-footer"%>
