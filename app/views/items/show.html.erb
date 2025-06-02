@@ -34,7 +34,7 @@
 
   <% elsif current_user.id != @item.user_id && @item.order.blank? %>
     <!-- 出品者じゃない＆未購入：購入ボタン -->
-    <%= link_to "購入画面に進む", item_orders_path(@item.id), class: "item-red-btn" %>
+    <%= link_to "購入画面に進む", item_orders_path(@item.id), class: "item-red-btn", data: {turbo: false} %>
 
   <% else %>
     <!-- それ以外（購入済みなど）：何も表示しない -->

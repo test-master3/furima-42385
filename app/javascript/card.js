@@ -85,6 +85,6 @@ const pay = () => {
   });
 };
 
-// DOMContentLoadedとTurboの両方に対応
-document.addEventListener("DOMContentLoaded", pay);
+// turbo:renderとturbo:loadの両方に対応
+document.addEventListener("turbo:render", pay);
 document.addEventListener("turbo:load", pay);
