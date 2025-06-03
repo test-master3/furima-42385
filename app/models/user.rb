@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数字混合で入力してください' }
 
   # 出品機能実装時に追加予定
-  # has_many :items
+  has_many :items
   # 購入機能実装時に追加予定
-  # has_many :orders
+  has_many :orders
 end

@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :image, presence: true
 
   belongs_to :user
-  # has_one :order  # 商品購入機能で実装予定
+  has_one :order
   has_one_attached :image
 
   validates :category_id, numericality: { other_than: 1, message: 'を選択してください' }

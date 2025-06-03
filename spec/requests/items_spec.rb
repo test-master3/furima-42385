@@ -11,7 +11,8 @@ RSpec.describe 'Items', type: :request do
       delivery_cost_id: 2,
       prefecture_id: 2,
       delivery_date_id: 2,
-      price: 1000
+      price: 1000,
+      image: Rack::Test::UploadedFile.new(Rails.root.join('test', 'fixtures', 'files', 'LGMT2.png'), 'image/png')
     }
   end
 
@@ -55,9 +56,9 @@ RSpec.describe 'Items', type: :request do
           end.to change(Item, :count).by(1)
         end
 
-        it '商品一覧ページにリダイレクトされる' do
+        it 'トップページにリダイレクトされる' do
           post items_path, params: { item: valid_attributes }
-          expect(response).to redirect_to(items_path)
+          expect(response).to redirect_to(root_path)
         end
       end
 

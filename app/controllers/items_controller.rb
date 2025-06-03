@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params.merge(user_id: current_user.id))
+    @item = current_user.items.build(item_params)
 
     if @item.save
       redirect_to root_path
@@ -36,8 +36,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
     redirect_to root_path
   end
 
@@ -47,19 +46,22 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def item_params
-    params.require(:item).permit(:name, :description, :price, :category_id, :state_id, :delivery_cost_id, :delivery_date_id,
-                                 :prefecture_id, :image)
-  end
-
   def move_to_index
-    unless user_signed_in?
-      redirect_to new_user_session_path
+    # 所有者以外のアクセスをブロック
+    if user_signed_in? && current_user.id != @item.user_id
+      redirect_to root_path
       return
     end
 
-    return if current_user.id == @item.user_id
+    # 売り切れ商品の編集をブロック
+    return unless @item.order.present?
 
     redirect_to root_path
+    nil
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :description, :price, :category_id, :state_id, :delivery_cost_id, :delivery_date_id,
+                                 :prefecture_id, :image)
   end
 end
