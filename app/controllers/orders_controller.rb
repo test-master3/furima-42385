@@ -40,10 +40,16 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: 'アイテムが見つかりません'
   end
 
   def move_to_index
-    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
+    if @item.user == current_user
+      redirect_to root_path, alert: '自分の商品は購入できません'
+    elsif @item.order.present?
+      redirect_to root_path, alert: 'この商品は売り切れです'
+    end
   end
 
   def order_params
