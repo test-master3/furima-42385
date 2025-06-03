@@ -6,7 +6,7 @@ class OrderShippingAddress
     validates :post_number, format: { with: /\A\d{3}-\d{4}\z/, message: 'は正しい形式で入力してください（例：123-4567）' }
     validates :city
     validates :street
-    validates :phone_number, format: { with: /\A(090|080|070)\d{8}\z/, message: 'は携帯番号11桁で入力してください（例：09012345678）' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は10桁以上11桁以下の半角数字で入力してください（例：09012345678、0312345678）' }
     validates :user_id, numericality: { only_integer: true, greater_than: 0 }
     validates :item_id, numericality: { only_integer: true, greater_than: 0 }
   end

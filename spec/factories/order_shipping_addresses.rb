@@ -6,8 +6,7 @@ FactoryBot.define do
     street { '1-1-1' }
     building { 'テストビル' }
     phone_number { '09012345678' }
-    item_id { 1 }
-    user_id { 1 }
     payjp_token { 'tok_test_token' }
+    # item_idとuser_idはテストで実際のインスタンスから設定
   end
 end
