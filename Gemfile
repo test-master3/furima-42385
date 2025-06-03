@@ -79,7 +79,7 @@ group :development do
   gem 'rubocop', '1.71.2', require: false
 end
 
-gem 'pg', '1.2.3'
+gem 'pg', '1.5.3'
 
 gem 'devise'
 
