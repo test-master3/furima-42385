@@ -1,14 +1,13 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
   end
 
   def show
-    @item = Item.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'アイテムが見つかりません'
   end
 
   def new
@@ -26,32 +25,40 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = current_user.items.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'アクセス権限がありません'
   end
 
   def update
-    @item = current_user.items.find(params[:id])
-
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
       render :edit, status: :unprocessable_entity
     end
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'アクセス権限がありません'
   end
 
   def destroy
-    @item = current_user.items.find(params[:id])
     @item.destroy
     redirect_to root_path
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'アクセス権限がありません'
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def move_to_index
+    # 所有者以外のアクセスをブロック
+    if user_signed_in? && current_user.id != @item.user_id
+      redirect_to root_path
+      return
+    end
+
+    # 売り切れ商品の編集をブロック
+    return unless @item.order.present?
+
+    redirect_to root_path
+    nil
+  end
 
   def item_params
     params.require(:item).permit(:name, :description, :price, :category_id, :state_id, :delivery_cost_id, :delivery_date_id,

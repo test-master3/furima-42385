@@ -40,8 +40,6 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: 'アイテムが見つかりません'
   end
 
   def move_to_index
