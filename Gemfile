@@ -79,8 +79,6 @@ group :development do
   gem 'rubocop', '1.71.2', require: false
 end
 
-gem 'pg', '1.5.3'
-
 gem 'devise'
 
 gem 'active_hash'
