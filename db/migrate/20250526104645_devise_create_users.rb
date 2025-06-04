@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.text :last_name_kana, null: false
       t.text :first_name_kana, null: false
       t.date :birthday, null: false
-      t.string   :reset_password_token
+      t.string   :reset_password_token, limit: 191
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at
 
