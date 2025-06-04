@@ -40,7 +40,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[7.0]
 
     create_table :active_storage_variant_records, id: primary_key_type do |t|
       t.belongs_to :blob, null: false, index: false, type: foreign_key_type
-      t.string :variation_digest, null: false
+      t.string :variation_digest, null: false, limit: 191
 
       t.index [ :blob_id, :variation_digest ], name: :index_active_storage_variant_records_uniqueness, unique: true
       t.foreign_key :active_storage_blobs, column: :blob_id
