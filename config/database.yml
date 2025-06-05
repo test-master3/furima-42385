@@ -1,8 +1,7 @@
 production:
+  <<: *default
   adapter: mysql2
-  encoding: utf8mb4
-  pool: 5
-  database: furima_42385_production
+  database: （アプリ名）_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
